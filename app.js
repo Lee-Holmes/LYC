@@ -4,18 +4,6 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  if(req.method == "GET"){
-	doGet(req,res);
-	res.end();
-  }else if(req.method == "POST"){
-	doPost(req,res);
-	res.end();
-  }else{
-	res.end();
-  }
-});
-
-function doGet(req,res){
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html');
   res.write('<html>');
