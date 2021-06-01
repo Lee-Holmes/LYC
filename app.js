@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
   res.write('</body>');
   res.write('</html>');
   res.end();
-}
+})
 
 
 function doPost(req,res){
