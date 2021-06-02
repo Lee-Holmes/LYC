@@ -1,8 +1,25 @@
 var net = require('net');
-
+var clientList=[];
 var server = net.createServer(function(socket){
-	socket.write('Echo server\r\n');
-	socket.pipe(socket);
+	clientList.push(socket);
+	socket.write('success! \r\n');
+	//socket.pipe(socket);
+	socket.on('data',function(data){
+		console.log(data.toString());
+		//socket.write(data);
+		broadcast(data);
+	});
+	socket.on('end',function(){
+		socket.write("end!");
+	});
 });
 
-server.listen(1337,'127.0.0.1');
+function broadcast(data){
+	for(var i=0;i<clientList.length;i++){
+		clientList[i].write(data);
+	}
+}
+
+server.listen(1338,'127.0.0.1');
+
+
